@@ -24,4 +24,4 @@ To deploy these custom workflows,  end users must download respective workflows 
 ## Documentation
 
 To understand the best practices when utlizing ICO with the Hitachi VSP, including the custom workflows in this document please view the below best practices guide:
-[Documentation](https://www.hitachivantara.com/content/dam/hvac/pdfs/architecture-guide/vsp-with-cisco-intersight-cloud-orchestrator.pdf)
+[Documentation](https://docs.hitachivantara.com/v/u/en-us/application-optimized-solutions/mk-sl-280)
