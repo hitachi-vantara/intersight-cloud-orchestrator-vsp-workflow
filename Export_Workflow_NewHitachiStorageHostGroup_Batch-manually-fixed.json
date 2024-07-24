@@ -1,0 +1,691 @@
+[
+  {
+    "Body": {
+      "ClassId": "workflow.CustomDataTypeDefinition",
+      "CompositeType": true,
+      "Label": "Hitachi New Storage Host Group Parameters",
+      "Name": "HitachiNewStorageHostGroupParameters",
+      "ObjectType": "workflow.CustomDataTypeDefinition",
+      "ParameterSet": [],
+      "Properties": {
+        "ObjectType": "workflow.CustomDataTypeProperties"
+      },
+      "SharedScope": "user",
+      "TypeDefinition": [
+        {
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "Host",
+          "Name": "HostName",
+          "ObjectType": "workflow.PrimitiveDataType",
+          "Properties": {
+            "Constraints": {
+              "EnumList": [],
+              "Max": 254,
+              "Min": 1,
+              "ObjectType": "workflow.Constraints",
+              "Regex": "^[a-zA-Z0-9]+([_a-zA-Z0-9-]*[a-zA-Z0-9])*$"
+            },
+            "InventorySelector": [],
+            "ObjectType": "workflow.PrimitiveDataProperty",
+            "Type": "string"
+          },
+          "Required": true
+        },
+        {
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "Host Group Number",
+          "Name": "HostGroupNumber",
+          "ObjectType": "workflow.PrimitiveDataType",
+          "Properties": {
+            "Constraints": {
+              "EnumList": [],
+              "Max": 255,
+              "ObjectType": "workflow.Constraints"
+            },
+            "InventorySelector": [],
+            "ObjectType": "workflow.PrimitiveDataProperty",
+            "Type": "integer"
+          },
+          "Required": true
+        },
+        {
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "Port Id",
+          "Name": "PortId",
+          "ObjectType": "workflow.PrimitiveDataType",
+          "Properties": {
+            "Constraints": {
+              "EnumList": [],
+              "ObjectType": "workflow.Constraints"
+            },
+            "InventorySelector": [
+              {
+                "DisplayAttributes": [
+                  "PortId"
+                ],
+                "ObjectType": "workflow.MoReferenceProperty",
+                "Selector": "/api/v1/storage/HitachiHosts?$apply=groupby((PortId),aggregate($count as count))&$orderby=PortId",
+                "SelectorProperty": {
+                  "Method": "GET",
+                  "ObjectType": "workflow.SelectorProperty"
+                },
+                "ValueAttribute": "PortId"
+              }
+            ],
+            "ObjectType": "workflow.PrimitiveDataProperty",
+            "Type": "string"
+          },
+          "Required": true
+        },
+        {
+          "ArrayItemType": {
+            "ObjectType": "workflow.PrimitiveArrayItem",
+            "Properties": {
+              "Constraints": {
+                "EnumList": [],
+                "ObjectType": "workflow.Constraints"
+              },
+              "InventorySelector": [],
+              "ObjectType": "workflow.PrimitiveDataProperty",
+              "Type": "string"
+            }
+          },
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "List of WWNs",
+          "Max": 500,
+          "Min": 1,
+          "Name": "WWNs",
+          "ObjectType": "workflow.ArrayDataType",
+          "Required": true
+        },
+        {
+          "ArrayItemType": {
+            "ObjectType": "workflow.PrimitiveArrayItem",
+            "Properties": {
+              "Constraints": {
+                "EnumList": [],
+                "ObjectType": "workflow.Constraints"
+              },
+              "InventorySelector": [],
+              "ObjectType": "workflow.PrimitiveDataProperty",
+              "Type": "integer"
+            }
+          },
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "Description": "Number of options for setting host mode options. For the specifiable numbers, see the provisioning guide for Open Systems. When specifying this attribute, make sure to also specify the Host Mode attribute.",
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "Host Mode Options",
+          "Max": 300,
+          "Min": 1,
+          "Name": "HostModeOptions",
+          "ObjectType": "workflow.ArrayDataType",
+          "Required": true
+        },
+        {
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "Description": "Host mode. If this attribute is omitted, Standard is set.",
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "Host Mode",
+          "Name": "HostMode",
+          "ObjectType": "workflow.PrimitiveDataType",
+          "Properties": {
+            "Constraints": {
+              "EnumList": [
+                {
+                  "Label": "HP",
+                  "ObjectType": "workflow.EnumEntry",
+                  "Value": "HP-UX"
+                },
+                {
+                  "Label": "OpenVMS",
+                  "ObjectType": "workflow.EnumEntry",
+                  "Value": "OVMS"
+                },
+                {
+                  "Label": "Tru64",
+                  "ObjectType": "workflow.EnumEntry",
+                  "Value": "TRU64"
+                },
+                {
+                  "Label": "Solaris",
+                  "ObjectType": "workflow.EnumEntry",
+                  "Value": "SOLARIS"
+                },
+                {
+                  "Label": "NetWare",
+                  "ObjectType": "workflow.EnumEntry",
+                  "Value": "NETWARE"
+                },
+                {
+                  "Label": "AIX",
+                  "ObjectType": "workflow.EnumEntry",
+                  "Value": "AIX"
+                },
+                {
+                  "Label": "VMware Extension",
+                  "ObjectType": "workflow.EnumEntry",
+                  "Value": "VMWARE_EX"
+                },
+                {
+                  "Label": "Windows Extension",
+                  "ObjectType": "workflow.EnumEntry",
+                  "Value": "WIN_EX"
+                },
+                {
+                  "Label": "Standard",
+                  "ObjectType": "workflow.EnumEntry",
+                  "Value": "LINUX/IRIX"
+                }
+              ],
+              "ObjectType": "workflow.Constraints"
+            },
+            "InventorySelector": [],
+            "ObjectType": "workflow.PrimitiveDataProperty",
+            "Type": "enum"
+          },
+          "Required": true
+        },
+        {
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "Description": "When creating a host group by specifying host group number, if you want to omit the process of checking whether the host group is created, specify true. If you specify true and a host group or iSCSI target already exists for the specified host group number, the setting is overwritten. true: Does not check whether the host group has been created. false: Checks whether the host group has been created. If this attribute is omitted, false is assumed. If Host Group Number is not specified, this attribute is ignored.",
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "Quick Creating",
+          "Name": "IsQuickCreating",
+          "ObjectType": "workflow.PrimitiveDataType",
+          "Properties": {
+            "Constraints": {
+              "EnumList": [],
+              "ObjectType": "workflow.Constraints"
+            },
+            "InventorySelector": [],
+            "ObjectType": "workflow.PrimitiveDataProperty",
+            "Type": "boolean"
+          }
+        }
+      ]
+    },
+    "ClassId": "bulk.RestSubRequest",
+    "ObjectType": "bulk.RestSubRequest",
+    "TargetMoid": "",
+    "Uri": "/v1/workflow/CustomDataTypeDefinitions",
+    "Verb": "POST"
+  },
+  {
+    "Body": {
+      "ClassId": "workflow.WorkflowDefinition",
+      "DefaultVersion": true,
+      "InputDefinition": [
+        {
+          "CustomDataTypeProperties": {
+            "CatalogMoid": "shared",
+            "CustomDataTypeName": "StorageTargetDataType",
+            "ObjectType": "workflow.CustomDataProperty"
+          },
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "Storage Device",
+          "Name": "StorageDevice",
+          "ObjectType": "workflow.TargetDataType",
+          "Properties": [],
+          "Required": true
+        },
+        {
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "Description": "Enter a host name. The host name must be alphanumeric, can include 63 characters, and may contain a hyphen (-). The host name may vary depending on the selected device target.",
+          "DisplayMeta": {
+            "InventorySelector": false,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "Host",
+          "Name": "HostName",
+          "ObjectType": "workflow.CustomDataType",
+          "Properties": {
+            "CatalogMoid": "shared",
+            "CustomDataTypeName": "StorageHostNameType",
+            "ObjectType": "workflow.CustomDataProperty"
+          },
+          "Required": true
+        },
+        {
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "Description": "Storage vendor host identifier.",
+          "DisplayMeta": {
+            "InventorySelector": false,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "InputParameters": {
+            "PlatformType": "${workflow.inputDataType.StorageTargetDataType.ObjectType}"
+          },
+          "Label": "Storage Vendor Host Identifier",
+          "Name": "StorageVendorHostIdentifier",
+          "ObjectType": "workflow.CustomDataType",
+          "Properties": {
+            "CatalogMoid": "shared",
+            "CustomDataTypeName": "StorageVendorHostIdentifierType",
+            "ObjectType": "workflow.CustomDataProperty"
+          },
+          "Required": true
+        },
+        {
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "Description": "Storage vendor virtual machine name.",
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "InputParameters": {
+            "PlatformType": "${workflow.inputDataType.StorageTargetDataType.ObjectType}"
+          },
+          "Label": "Storage Vendor Virtual Machine",
+          "Name": "StorageVendorVirtualMachineName",
+          "ObjectType": "workflow.CustomDataType",
+          "Properties": {
+            "CatalogMoid": "shared",
+            "CustomDataTypeName": "StorageVendorVirtualMachineNameType",
+            "ObjectType": "workflow.CustomDataProperty"
+          },
+          "Required": true
+        },
+        {
+          "ArrayItemType": {
+            "ObjectType": "workflow.PrimitiveArrayItem",
+            "Properties": {
+              "Constraints": {
+                "EnumList": [],
+                "ObjectType": "workflow.Constraints"
+              },
+              "InventorySelector": [],
+              "ObjectType": "workflow.PrimitiveDataProperty",
+              "Type": "string"
+            }
+          },
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "Description": "Sets the list of Fiber channel worldwide names (WWNs) for the new host ['1111222233336666'].",
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "List of WWNs",
+          "Max": 500,
+          "Min": 1,
+          "Name": "WWNs",
+          "ObjectType": "workflow.ArrayDataType"
+        },
+        {
+          "ArrayItemType": {
+            "ObjectType": "workflow.PrimitiveArrayItem",
+            "Properties": {
+              "Constraints": {
+                "EnumList": [],
+                "ObjectType": "workflow.Constraints"
+              },
+              "InventorySelector": [],
+              "ObjectType": "workflow.PrimitiveDataProperty",
+              "Type": "string"
+            }
+          },
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "Description": "Sets the list of iSCSI qualified names (IQNs) for the host ['iqn.1111.com.storagearray.iscsi:name1'].",
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "List of IQNs",
+          "Max": 500,
+          "Min": 1,
+          "Name": "IQNs",
+          "ObjectType": "workflow.ArrayDataType"
+        },
+        {
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "Description": "Storage vendor host options.",
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "InputParameters": {
+            "PlatformType": "${workflow.inputDataType.StorageTargetDataType.ObjectType}"
+          },
+          "Label": "Storage Vendor Host Options",
+          "Name": "StorageVendorHostOptions",
+          "ObjectType": "workflow.CustomDataType",
+          "Properties": {
+            "CatalogMoid": "shared",
+            "CustomDataTypeName": "StorageVendorHostOptionsType",
+            "ObjectType": "workflow.CustomDataProperty"
+          },
+          "Required": true
+        }
+      ],
+      "InputParameterSet": [],
+      "Label": "New Hitachi Storage Host Group",
+      "Name": "NewHitachiStorageHostGroup",
+      "ObjectType": "workflow.WorkflowDefinition",
+      "OutputDefinition": [],
+      "Properties": {
+        "ObjectType": "workflow.WorkflowProperties",
+        "PublishStatus": "Draft",
+        "SupportStatus": "Supported"
+      },
+      "SharedScope": "user",
+      "Tasks": [
+        {
+          "Name": "StartTask",
+          "NextTask": "NewStorageHost1",
+          "ObjectType": "workflow.StartTask"
+        },
+        {
+          "CatalogMoid": "shared",
+          "Description": "Create a storage host with host name and list of WWNs and IQNs to be associated with it as input. Storage host is the entity used to associate initiators to storage and expose as LUNs. Host can map to different terms for Storage vendors. For NetApp ONTAP storage this maps to iGroup. Outputs are host name, and associated IQN or WWN list.",
+          "InputParameters": {
+            "HostName": "${workflow.input.HostName}",
+            "IQNs": "${workflow.input.IQNs}",
+            "StorageDevice": "${workflow.input.StorageDevice}",
+            "StorageVendorHostIdentifier": "${workflow.input.StorageVendorHostIdentifier}",
+            "StorageVendorHostOptions": "${workflow.input.StorageVendorHostOptions}",
+            "StorageVendorVirtualMachineName": "${workflow.input.StorageVendorVirtualMachineName}",
+            "WWNs": "${workflow.input.WWNs}"
+          },
+          "Label": "New Storage Host",
+          "Name": "NewStorageHost1",
+          "ObjectType": "workflow.WorkerTask",
+          "OnFailure": "FailureEndTask",
+          "OnSuccess": "ConnectInitiatorsToStorageHost1",
+          "TaskDefinitionName": "NewStorageHost",
+          "Version": 3
+        },
+        {
+          "CatalogMoid": "shared",
+          "Description": "Connect a WWN or IQN list to storage host. Storage host is the entity used to associate initiators to storage and expose as LUNs. Host can map to different terms for Storage vendors. For NetApp ONTAP storage this maps to iGroup. Inputs are host name and list of WWNs or IQNs. Outputs generated are host name created, IQN or WWN list associated with the host. Task can be used with either WWNs or IQNs.For NetApp ONTAP Storage devices if both inputs are given then both initiators will be added. For other vendors if both inputs are given then WWNs are given priority and added.",
+          "InputParameters": {
+            "HostName": "${workflow.input.HostName}",
+            "StorageVendorHostIdentifier" : "${workflow.input.StorageVendorHostIdentifier}",
+            "IQNs": "${workflow.input.IQNs}",
+            "StorageDevice": "${workflow.input.StorageDevice}",
+            "StorageVendorVirtualMachineName": "${workflow.input.StorageVendorVirtualMachineName}",
+            "WWNs": "${workflow.input.WWNs}"
+          },
+          "Label": "Connect Initiators to Storage Host",
+          "Name": "ConnectInitiatorsToStorageHost1",
+          "ObjectType": "workflow.WorkerTask",
+          "OnFailure": "FailureEndTask",
+          "OnSuccess": "SuccessEndTask",
+          "TaskDefinitionName": "ConnectInitiatorsToStorageHost",
+          "Version": 2
+        },
+        {
+          "Name": "SuccessEndTask",
+          "ObjectType": "workflow.SuccessEndTask"
+        },
+        {
+          "Name": "FailureEndTask",
+          "ObjectType": "workflow.FailureEndTask"
+        }
+      ],
+      "UiInputFilters": [],
+      "UiRenderingData": {
+        "Positions": [
+          {
+            "Name": "StartTask",
+            "X": 267.5,
+            "Y": 58.5
+          },
+          {
+            "Name": "SuccessEndTask",
+            "X": 104.5,
+            "Y": 455
+          },
+          {
+            "Name": "FailureEndTask",
+            "X": 507.5,
+            "Y": 558
+          },
+          {
+            "Name": "NewStorageHost1",
+            "X": 424.5,
+            "Y": 71
+          },
+          {
+            "Name": "ConnectInitiatorsToStorageHost1",
+            "X": 180,
+            "Y": 314
+          }
+        ]
+      },
+      "VariableDefinition": [],
+      "Version": 1
+    },
+    "ClassId": "bulk.RestSubRequest",
+    "ObjectType": "bulk.RestSubRequest",
+    "TargetMoid": "",
+    "Uri": "/v1/workflow/WorkflowDefinitions",
+    "Verb": "POST"
+  },
+  {
+    "Body": {
+      "ClassId": "workflow.WorkflowDefinition",
+      "DefaultVersion": true,
+      "InputDefinition": [
+        {
+          "CustomDataTypeProperties": {
+            "CatalogMoid": "shared",
+            "CustomDataTypeName": "StorageTargetDataType",
+            "ObjectType": "workflow.CustomDataProperty"
+          },
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "Storage Device",
+          "Name": "StorageDevice",
+          "ObjectType": "workflow.TargetDataType",
+          "Properties": [],
+          "Required": true
+        },
+        {
+          "ArrayItemType": {
+            "ObjectType": "workflow.CustomArrayItem",
+            "Properties": {
+              "CatalogMoid": "user",
+              "CustomDataTypeName": "HitachiNewStorageHostGroupParameters",
+              "ObjectType": "workflow.CustomDataProperty"
+            }
+          },
+          "Default": {
+            "ObjectType": "workflow.DefaultValue"
+          },
+          "DisplayMeta": {
+            "InventorySelector": true,
+            "ObjectType": "workflow.DisplayMeta",
+            "WidgetType": "None"
+          },
+          "Label": "Hitachi New Storage Host Group Parameters",
+          "Max": 254,
+          "Min": 1,
+          "Name": "HitachiNewStorageHostGroupParameters",
+          "ObjectType": "workflow.ArrayDataType",
+          "Required": true
+        }
+      ],
+      "InputParameterSet": [],
+      "Label": "New Hitachi Storage Host Group_Batch",
+      "Name": "NewHitachiStorageHostGroup_Batch",
+      "ObjectType": "workflow.WorkflowDefinition",
+      "OutputDefinition": [],
+      "Properties": {
+        "ObjectType": "workflow.WorkflowProperties",
+        "PublishStatus": "Draft",
+        "SupportStatus": "Supported"
+      },
+      "SharedScope": "user",
+      "Tasks": [
+        {
+          "Name": "StartTask",
+          "NextTask": "parallelLoop1",
+          "ObjectType": "workflow.StartTask"
+        },
+        {
+          "Name": "SuccessEndTask",
+          "ObjectType": "workflow.SuccessEndTask"
+        },
+        {
+          "Name": "FailureEndTask",
+          "ObjectType": "workflow.FailureEndTask"
+        },
+        {
+          "Count": "{{len .global.workflow.input.HitachiNewStorageHostGroupParameters}}",
+          "Description": "A Parallel Loop is a control task that runs one task or one sub-workflow multiple times based on a specified count.  The count can be a static value that is specified during design time or a dynamic value that is derived from workflow inputs or task outputs.  When the loop is executed, the count 'N' is determined, N tasks or sub-workflows are scheduled for execution in parallel.  When all N instances of the task or sub-workflow reach a final state the parallel loop will complete and workflow execution will move on to the next task.  If any one of the tasks or sub-workflows fails, then the entire loop will fail.  Dynamic values for count must be specified as a template.  For example, if a loop must run for a count which matches the length of a workflow input called StringArray, then the count must be specified using a template '{{ len .global.workflow.input.StringArray }}'.  The iteration of the loop is available using the keyword '.iteration' and it can be used to control inputs that feed into the task.  For example, the task inside the loop needs to take one value from the workflow input StringArray, then the task string input can be mapped to the template '{{ index .global.workflow.input.StringArray .iteration}}' during design.",
+          "Label": "Parallel Loop",
+          "LoopStartTask": "NewHitachiStorageHostGroup1",
+          "Name": "parallelLoop1",
+          "NumberOfBatches": 1,
+          "ObjectType": "workflow.LoopTask",
+          "OnSuccess": "SuccessEndTask",
+          "Parallel": true
+        },
+        {
+          "CatalogMoid": "user",
+          "InputParameters": {
+            "HostName": "{{(index .global.workflow.input.HitachiNewStorageHostGroupParameters .iteration).HostName}}\n",
+            "StorageDevice": "${workflow.input.StorageDevice}",
+            "StorageVendorHostIdentifier": {
+              "HitachiHostGroupParameters": {
+                "HostGroupNumber": "{{(index .global.workflow.input.HitachiNewStorageHostGroupParameters .iteration).HostGroupNumber}}",
+                "PortId": "{{(index .global.workflow.input.HitachiNewStorageHostGroupParameters .iteration).PortId}}"
+              },
+              "PlatformType": "storage.HitachiArray"
+            },
+            "StorageVendorHostOptions": {
+              "HitachiHostGroupOptions": {
+                "HostMode": "{{(index .global.workflow.input.HitachiNewStorageHostGroupParameters .iteration).HostMode}}",
+                "HostModeOptions": "{{(index .global.workflow.input.HitachiNewStorageHostGroupParameters .iteration).HostModeOptions | ToJson}}",
+                "IsQuickCreating": false
+              },
+              "PlatformType": "storage.HitachiArray"
+            },
+            "StorageVendorVirtualMachineName": {
+              "PlatformType": "storage.HitachiArray"
+            },
+            "WWNs": "{{(index .global.workflow.input.HitachiNewStorageHostGroupParameters .iteration).WWNs}}"
+          },
+          "Label": "New Hitachi Storage Host Group",
+          "Name": "NewHitachiStorageHostGroup1",
+          "ObjectType": "workflow.SubWorkflowTask",
+          "Version": 1,
+          "WorkflowDefinitionName": "NewHitachiStorageHostGroup"
+        }
+      ],
+      "UiInputFilters": [],
+      "UiRenderingData": {
+        "Positions": [
+          {
+            "Name": "StartTask",
+            "X": 264,
+            "Y": 128
+          },
+          {
+            "Name": "SuccessEndTask",
+            "X": 132.80486551973212,
+            "Y": 515.789999704808
+          },
+          {
+            "Name": "FailureEndTask",
+            "X": 363.39134343237504,
+            "Y": 514.7483330536634
+          },
+          {
+            "Name": "parallelLoop1",
+            "X": 162.752651951631,
+            "Y": 238.62499939464033
+          },
+          {
+            "Name": "NewHitachiStorageHostGroup1",
+            "X": 175.752651951631,
+            "Y": 330.6249993946403
+          }
+        ]
+      },
+      "VariableDefinition": [],
+      "Version": 1
+    },
+    "ClassId": "bulk.RestSubRequest",
+    "ObjectType": "bulk.RestSubRequest",
+    "TargetMoid": "",
+    "Uri": "/v1/workflow/WorkflowDefinitions",
+    "Verb": "POST"
+  }
+]
